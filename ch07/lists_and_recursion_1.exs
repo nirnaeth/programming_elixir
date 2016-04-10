@@ -1,7 +1,4 @@
 defmodule Operations do
-  def sum([]), do: 0
-  def sum([head | tail]), do: head + sum(tail)
-
   # iex(11)> Operations.mapsum([1, 2], &(&1 * 2))
   # 6
   def mapsum(list, fun), do: _mapsum(list, 0, fun)
