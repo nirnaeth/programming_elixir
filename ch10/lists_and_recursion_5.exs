@@ -34,4 +34,18 @@ defmodule MyList do
       do_filter(tail, result, fun)
     end
   end
+
+  def split(collection, 0), do: {[], collection}
+  def split([head | tail], count) when count > 0 do
+    do_split([head], tail, count - 1)
+  end
+  def split([head | tail], count) when count < 0 do
+    do_split([head], tail, length(tail) - abs(count))
+  end
+
+  defp do_split(part_1, part_2, 0), do: {part_1, part_2}
+  defp do_split(part_1, part_2, _) when part_2 == [], do: {part_1, part_2}
+  defp do_split(part_1, [head | tail], count) do
+    do_split(part_1 ++ [head], tail, count - 1)
+  end
 end
