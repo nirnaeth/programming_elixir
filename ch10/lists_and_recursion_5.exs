@@ -21,4 +21,17 @@ defmodule MyList do
     fun.(head)
     do_each(tail, fun)
   end
+
+  def filter(collection, fun) do
+    do_filter(collection, [], fun)
+  end
+
+  defp do_filter([], result, _), do: result
+  defp do_filter([head | tail], result, fun) do
+    if fun.(head) do
+      do_filter(tail, result ++ [head], fun)
+    else
+      do_filter(tail, result, fun)
+    end
+  end
 end
