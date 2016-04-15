@@ -44,8 +44,27 @@ defmodule MyList do
   end
 
   defp do_split(part_1, part_2, 0), do: {part_1, part_2}
-  defp do_split(part_1, part_2, _) when part_2 == [], do: {part_1, part_2}
+  defp do_split(part_1, [], _), do: {part_1, []}
   defp do_split(part_1, [head | tail], count) do
     do_split(part_1 ++ [head], tail, count - 1)
+  end
+
+  def take(_, 0), do: []
+  def take([head | tail], count) when count > 0 do
+    do_take([head], tail, count - 1)
+  end
+  def take([_ | tail], count) when count < 0 do
+    do_reverse_take(tail, length(tail) - abs(count))
+  end
+
+  defp do_take(part_1, _, 0), do: part_1
+  defp do_take(part_1, [], _), do: part_1
+  defp do_take(part_1, [head | tail], count) do
+    do_take(part_1 ++ [head], tail, count - 1)
+  end
+
+  defp do_reverse_take(result, 0), do: result
+  defp do_reverse_take([_ | tail], count) do
+    do_reverse_take(tail, count - 1)
   end
 end
