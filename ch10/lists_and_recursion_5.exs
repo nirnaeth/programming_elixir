@@ -11,4 +11,14 @@ defmodule MyList do
       false
     end
   end
+
+  def each(collection, fun) do
+    do_each(collection, fun)
+  end
+
+  defp do_each([], _), do: :ok
+  defp do_each([head | tail], fun) do
+    fun.(head)
+    do_each(tail, fun)
+  end
 end
