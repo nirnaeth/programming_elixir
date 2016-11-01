@@ -28,7 +28,7 @@ defmodule CLITest do
 
   defp fake_list(values) do
     data = for value <- values,
-           do: [ {"created_at", value}, {"other data", "xxx"} ]
+           do: [ {"created_at", value}, {"id", "1"}, {"number", "2"}, {"title", "some title"} ]
     convert_to_maps data
   end
 end

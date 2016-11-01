@@ -1,4 +1,5 @@
 defmodule Issues.CLI do
+  import Issues.TableFormatter, only: [ print_with_columns: 2 ]
   @default_count 4
 
   def run(argv) do
@@ -32,6 +33,7 @@ defmodule Issues.CLI do
     |> convert_to_maps
     |> sort_into_ascending_order
     |> Enum.take(count)
+    |> print_with_columns(["id", "title", "number", "created_at"])
   end
 
   def decode_response({:ok, body}), do: body
